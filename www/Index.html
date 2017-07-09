@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Procrastination Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--SOME APPLE SEETINGS-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!--You need this although you do not need a physical reference as build will inject it in-->
+    <script type="text/javascript" src="JS/cordova.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDBN6zMMg3YzsUBvwHRe8HUngJG4ySMguQ&sensor=false"></script>
+    <script type="text/javascript" src="JS/jquery-2.2.2.min.js"></script>
+    <script type="text/javascript" src="JS/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="JS/ProcrastinationTracker.js"></script>
+    <link rel="stylesheet" href="CSS/jquery.mobile-1.4.5.css" />
+    <link rel="stylesheet" href="CSS/customCSS.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+
+</head>
+<body>
+
+<div data-role="page" id="Home" data-theme="b">
+
+    <div data-role="header">
+
+        <h1>Well Done!</h1>
+
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#Home" data-transition="none" onclick="homepageCheck()"data-icon="home">Home</a></li>
+                <li><a href="#AddPoints" data-transition="none" data-icon="plus">Add Points!</a></li>
+                <li><a href="#Progress" data-transition="none" onclick="moveBar()" data-icon="star">Progress</a></li>
+            </ul>
+        </div>
+    </div>
+
+        <div data-role="content">
+            <p id="reassure box">Welcome to the <em>I'm bad at being a person</em> app. Hay man don't worry here's <em> 15+ points </em>just for opening me. pat your self on the back. if you want to forget how bad you have been no worries just click clear. If you want some free points to feel better about your progress today <em> it's cool man don't worry</em> is the button for you. To add points for spesific actions you can go to the <em> you did it! </em> page. </p>
+            
+            <button id="home_clearstorage_button" onclick="ResetList()">Clear procrastination progress</button>
+            <button onclick="Add15Points()"id="ShortAdd">it's cool man don't worry</button>
+        </div>  
+</div>
+  
+
+    <!--the Add points Page-->
+<div data-role="page" id="AddPoints" data-theme="b">
+        <div data-role="header">
+            <h1>you're doing great</h1>
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#Home" data-transition="none"  onclick="homepageCheck()" data-icon="home">Home</a></li>
+                    <li><a href="#AddPoints" data-transition="none" data-icon="plus">Add Points!</a></li>
+                    <li><a href="#Progress" data-transition="none" onclick="moveBar()" data-icon="star">Progress</a></li>
+                </ul>
+            </div>
+            </div>
+            <div data-role="content">
+                <p>a range of activitys are here, however if none fo them fit your procrastination and you procrastinated and forgot about the app and just wish to hit your daily goal <em>you can fill the text field with your activity</em> and <em> fill the selection box with the points value of your choice </em> </p>
+                <div data-role="fieldcontain" class="ui-hide-label">
+                    <label for="NewActivity_id">ProPoints</label>
+                    <input type="text" name="NewActivity" id="NewActivity_id" placeholder="Add activity" />
+                </div>
+                <div class="dropdown">
+                    <button id="dropdownmenu" class="dropbtn">points</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <a href="#" id="Add5Points">+5</a>
+                        <a href="#" id="Add10Points">+10</a>
+                        <a href="#" id="Add15Points">+15</a>
+                        <a href="#" id="Add25Points">+25</a>
+                        <a href="#" id="Add50Points">+50</a>
+                    </div>
+                </div>
+                <button onclick="AddToList();">Add Activity</button>
+                <div id="ActivityButtons" class="ActivityButton-content">
+
+                </div>
+
+                <button href="#" onclick="Add5Points();">watched TV: +5</button>
+                <button href="#" onclick="Add15Points();">twitter: +15</button>
+                <button href="#" onclick="Add25Points();"> games: +25</button>
+                <button href="#" onclick="Add50Points();"> Drinking: +50 </button>
+
+                <button onclick="ResetList()"id="home_clearstorage_button">Clear procrastination progress</button>
+
+                
+
+                </div>
+  
+</div>
+
+    <div data-role="page" id="Progress" data-theme='b'>
+
+        <div data-role="header">
+            <h1>History</h1>
+
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#Home" data-transition="none" onclick="homepageCheck()" data-icon="home">Home</a></li>
+                    <li><a href="#AddPoints" data-transition="none" data-icon="plus">Add Points!</a></li>
+                    <li><a href="#Progress" data-transition="none" data-icon="star">Progress</a></li>
+                </ul>
+            </div>
+        </div>
+        <div data-role="content">
+            <div class="w3-container">
+                <p>Daily needs</p>
+                <p id="DailyScore">daily score is: 0</p>
+                <div class="w3-light-grey w3-round-large">
+                    <div class="w3-container w3-blue w3-round-large" id="DayBar" style="width:0%">0</div>
+                </div>
+                <p>Monthly needs</p>
+                <p id="MonthlyScore">monthly score is: 0</p>
+                <div class="w3-light-grey w3-round-large">
+                    <div class="w3-container w3-blue w3-round-large" id="MonthBar" style="width:0%">0%</div>
+                </div>
+            </div>
+            </div>
+
+
+
+</body>
+</html>
